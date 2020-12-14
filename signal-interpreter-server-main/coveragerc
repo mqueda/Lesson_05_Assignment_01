@@ -1,0 +1,7 @@
+[run]
+branch = True
+omit = signal_interpreter_server\integration_test.py
+
+[report]
+show_missing = True
+fail_under = 100
