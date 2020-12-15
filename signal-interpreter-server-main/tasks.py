@@ -1,8 +1,15 @@
 '''
 tasks.py
 '''
+import os
 import subprocess
 from invoke import task
+
+
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+SRC_DIR = os.path.join(ROOT_DIR, "signal_interpreter_server")
+TEST_DIR = os.path.join(ROOT_DIR, "tests")
+TEST_INT_DIR = os.path.join(TEST_DIR, "integration")
 
 
 @task  # pylint: disable=undefined-variable
@@ -11,7 +18,7 @@ def pycodestyle_check(_):
     style method
     :return:
     '''
-    cmd = r"pycodestyle ..\signal-interpreter-server-main"
+    cmd = (f"pycodestyle {SRC_DIR}")
     subprocess.call(cmd, shell=True)
 
 
@@ -21,27 +28,7 @@ def pylint_sources_check(_):
     lint method
     :return:
     '''
-    cmd = f"pylint signal_interpreter_server"
-    subprocess.call(cmd, shell=True)
-
-
-@task  # pylint: disable=undefined-variable
-def pylint_unit_tests_check(_):
-    '''
-    lint method
-    :return:
-    '''
-    cmd = f"pylint tests.unit"
-    subprocess.call(cmd, shell=True)
-
-
-@task  # pylint: disable=undefined-variable
-def pylint_integration_tests_check(_):
-    '''
-    lint method
-    :return:
-    '''
-    cmd = f"pylint tests.integration"
+    cmd = (f"pylint {SRC_DIR}")
     subprocess.call(cmd, shell=True)
 
 
@@ -51,20 +38,8 @@ def code_coverage_check(_):
     unit_test method
     :return:
     '''
-    cmd = f"pytest tests " \
-          f"--cov signal_interpreter_server " \
-          f"--cov-config=coveragerc"
-    subprocess.call(cmd, shell=True)
-
-
-@task  # pylint: disable=undefined-variable
-def call_start_server(_):
-    '''
-    lint method
-    :return:
-    '''
-    cmd = f"python signal_interpreter_server\\main.py " \
-          f" --file_path signal_database.json"
+    coveragerc_path = os.path.join(ROOT_DIR, "coveragerc")
+    cmd = (f"pytest {TEST_DIR} --cov {SRC_DIR} --cov-config={coveragerc_path}")
     subprocess.call(cmd, shell=True)
 
 
@@ -74,7 +49,8 @@ def call_integration_tests_json(_):
     lint method
     :return:
     '''
-    cmd = f"python -m pytest tests/integration/integration_test_json.py"
+    test_dir = os.path.join(TEST_INT_DIR, "integration_test_json.py")
+    cmd = (f"pytest {test_dir} --verbose")
     subprocess.call(cmd, shell=True)
 
 
@@ -84,7 +60,8 @@ def call_integration_tests_yaml(_):
     lint method
     :return:
     '''
-    cmd = f"python -m pytest tests/integration/integration_test_json.py"
+    test_dir = os.path.join(TEST_INT_DIR, "integration_test_yaml.py")
+    cmd = (f"pytest {test_dir} --verbose")
     subprocess.call(cmd, shell=True)
 
 
@@ -94,5 +71,6 @@ def call_integration_tests_xml(_):
     lint method
     :return:
     '''
-    cmd = f"python -m pytest tests/integration/integration_test_json.py"
+    test_dir = os.path.join(TEST_INT_DIR, "integration_test_xml.py")
+    cmd = (f"pytest {test_dir} --verbose")
     subprocess.call(cmd, shell=True)

@@ -6,12 +6,10 @@ import sys
 from mock import Mock
 from unittest.mock import patch
 import pytest
-sys.path[0] = 'C:\\temp\\Lesson_04_Assignment_01-main\\' \
-              'signal-interpreter-server-main\\' \
-              'signal_interpreter_server'
-from routes import signal_interpreter_app, set_parser, internal_error  # nopep8
-from json_parser import LoadAndParseJson  # nopep8
-from exceptions import ParserErrorKeyError  # nopep8
+from signal_interpreter_server.main import set_parser
+from signal_interpreter_server.routes import signal_interpreter_app, internal_error
+from signal_interpreter_server.json_parser import LoadAndParseJson
+from signal_interpreter_server.exceptions import ParserErrorKeyError
 
 
 os.chdir(os.path.join(os.path.abspath(os.path.dirname(__file__))))
@@ -30,7 +28,7 @@ def constructor_mock(name):
 
 
 @patch.object(sys, "argv", ["signal_interpreter_server", "--file_path",
-                            "../../signal_database.json"])
+                            "..\\..\\signal_database.json"])
 def test_correct_data():
     """
     Action : Test mocking server answer.

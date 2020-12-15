@@ -3,7 +3,7 @@ Module for implementing the yaml parser
 """
 import logging
 import yaml
-from exceptions import \
+from signal_interpreter_server.exceptions import \
     ParserErrorFileNotFoundError, ParserErrorDecodeError
 
 

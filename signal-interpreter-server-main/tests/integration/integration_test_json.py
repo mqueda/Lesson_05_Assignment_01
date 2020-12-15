@@ -7,9 +7,10 @@ import json
 from mock import Mock
 from unittest.mock import patch, call
 import pytest
-from routes import signal_interpreter_app, set_parser
-from json_parser import LoadAndParseJson
-from exceptions import\
+from signal_interpreter_server.main import set_parser
+from signal_interpreter_server.routes import signal_interpreter_app
+from signal_interpreter_server.json_parser import LoadAndParseJson
+from signal_interpreter_server.exceptions import\
     ParserErrorFileNotFoundError, ParserErrorDecodeError
 
 

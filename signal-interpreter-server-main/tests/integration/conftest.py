@@ -2,13 +2,10 @@
 Module for implementing the conftest file
 """
 import os
-import sys
 import pytest
-sys.path[0] = 'C:\\temp\\Lesson_04_Assignment_01-main' \
-              '\\signal-interpreter-server-main\\signal_interpreter_server'
-from json_parser import LoadAndParseJson  # nopep8
-from xml_parser import LoadAndParseXml  # nopep8
-from yaml_parser import LoadAndParseYaml  # nopep8
+from signal_interpreter_server.json_parser import LoadAndParseJson
+from signal_interpreter_server.xml_parser import LoadAndParseXml
+from signal_interpreter_server.yaml_parser import LoadAndParseYaml
 
 
 @pytest.fixture

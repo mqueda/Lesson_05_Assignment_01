@@ -1,18 +1,14 @@
 """
 Module for implementing the unit tests
 """
-import sys
 from mock import Mock
 from unittest.mock import patch, call
 from argparse import Namespace
 import pytest
-sys.path[0] = 'C:\\temp\\Lesson_04_Assignment_01-main' \
-              '\\signal-interpreter-server-main' \
-              '\\signal_interpreter_server'
-from main import main, init, ArgumentParser, \
-get_arguments  # nopep8
-from routes import signal_interpreter_app  # nopep8
-from json_parser import LoadAndParseJson  # nopep8
+from signal_interpreter_server.main import main, init, ArgumentParser, \
+get_arguments
+from signal_interpreter_server.routes import signal_interpreter_app
+from signal_interpreter_server.json_parser import LoadAndParseJson
 
 
 class MockMainClassNoRaise:
@@ -43,9 +39,9 @@ def test_main_arguments(mock_add_argument, mock_parse_args):
 
 
 @patch.object(signal_interpreter_app, "run")
-@patch("main.get_arguments",
+@patch("signal_interpreter_server.main.get_arguments",
        return_value=Namespace(file_path='signal_database.json'))
-@patch("main.set_parser")
+@patch("signal_interpreter_server.main.set_parser")
 @patch('logging.Logger.info')
 def test_main_functions(mock_info, mock_set_parser,
                         mock_get_arguments, mock_run):
@@ -61,8 +57,8 @@ def test_main_functions(mock_info, mock_set_parser,
     mock_run.assert_called_once()
 
 
-@patch("main.main")
-@patch("main.__name__", "__main__")
+@patch("signal_interpreter_server.main.main")
+@patch("signal_interpreter_server.main.__name__", "__main__")
 def test_init(mock_main):
     """
     Action : Test init call.
@@ -82,7 +78,7 @@ class MockMainClassRaise:
 
 @patch.object(signal_interpreter_app, "run")
 @patch.object(LoadAndParseJson, "load_file")
-@patch("main.get_arguments",
+@patch("signal_interpreter_server.main.get_arguments",
        return_value=MockMainClassRaise)
 def test_main_raise(mock_get_arguments, mock_load_file, mock_run):
     """

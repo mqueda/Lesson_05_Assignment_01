@@ -3,7 +3,7 @@ Module for implementing the json parser
 """
 import logging
 import json
-from exceptions import \
+from signal_interpreter_server.exceptions import \
     ParserErrorFileNotFoundError, ParserErrorDecodeError
 
 
