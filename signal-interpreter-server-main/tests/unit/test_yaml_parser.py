@@ -4,8 +4,8 @@ Module for implementing the unit tests
 import os
 import sys
 from unittest.mock import patch, mock_open
-import pytest
 import json
+import pytest
 from signal_interpreter_server.main import set_parser
 from signal_interpreter_server.yaml_parser import LoadAndParseYaml, yaml
 from signal_interpreter_server.routes import signal_interpreter_app
@@ -14,7 +14,8 @@ from signal_interpreter_server.exceptions import\
 
 
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
-TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures", "BAD_test_basic.yaml")
+TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR,
+                                           "fixtures", "BAD_test_basic.yaml")
 
 
 RAW_YAML_DATA = """\

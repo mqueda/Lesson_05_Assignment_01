@@ -3,8 +3,8 @@ Module for implementing the unit tests
 """
 import os
 import sys
-from mock import Mock
 from unittest.mock import patch
+from mock import Mock
 import pytest
 from signal_interpreter_server.main import set_parser
 from signal_interpreter_server.routes import signal_interpreter_app

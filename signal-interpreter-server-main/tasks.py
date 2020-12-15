@@ -18,17 +18,17 @@ def pycodestyle_check(_):
     style method
     :return:
     '''
-    cmd = (f"pycodestyle {SRC_DIR}")
+    cmd = (f"pycodestyle {SRC_DIR} {TEST_DIR}")
     subprocess.call(cmd, shell=True)
 
 
 @task  # pylint: disable=undefined-variable
-def pylint_sources_check(_):
+def pylint_check(_):
     '''
     lint method
     :return:
     '''
-    cmd = (f"pylint {SRC_DIR}")
+    cmd = (f"pylint {SRC_DIR} {TEST_DIR}")
     subprocess.call(cmd, shell=True)
 
 

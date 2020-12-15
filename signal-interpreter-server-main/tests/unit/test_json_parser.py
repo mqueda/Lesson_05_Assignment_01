@@ -13,7 +13,8 @@ from signal_interpreter_server.exceptions import\
 
 
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
-TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures", "BAD_test_basic.json")
+TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR,
+                                           "fixtures", "BAD_test_basic.json")
 
 
 RAW_JSON_DATA = '{ "json" : "json reference!" }'
