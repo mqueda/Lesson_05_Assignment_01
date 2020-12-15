@@ -1,11 +1,9 @@
 """
 Module for implementing the main file
 """
-import os
 import logging
 import logging.config
 from argparse import ArgumentParser
-import yaml
 from signal_interpreter_server.routes import\
     signal_interpreter_app, set_factory_object
 from signal_interpreter_server.parser_factory import ParserFactory
@@ -13,16 +11,10 @@ from signal_interpreter_server.json_parser import LoadAndParseJson
 from signal_interpreter_server.xml_parser import LoadAndParseXml
 from signal_interpreter_server.yaml_parser import LoadAndParseYaml
 
-# Remeber to set the parameter " --file_path signal_database.XXX "
+
+# Remeber to set the parameter " --file_path ..\signal_database.XXX "
 
 
-os.chdir(os.path.dirname(os.path.dirname
-                         (os.path.realpath(__file__))))
-
-
-with open(r'cfg\logger_configuration.yaml', "r") as f:
-    config = yaml.safe_load(f.read())
-    logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
 
 

@@ -1,12 +1,12 @@
 """
 Module for implementing the unit tests
 """
-from mock import Mock
-from unittest.mock import patch, call
 from argparse import Namespace
+from unittest.mock import patch, call
+from mock import Mock
 import pytest
 from signal_interpreter_server.main import main, init, ArgumentParser, \
-get_arguments
+    get_arguments
 from signal_interpreter_server.routes import signal_interpreter_app
 from signal_interpreter_server.json_parser import LoadAndParseJson
 

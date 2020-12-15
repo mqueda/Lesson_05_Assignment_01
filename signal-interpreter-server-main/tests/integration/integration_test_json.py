@@ -4,8 +4,8 @@ Module for implementing the integration tests
 import os
 import sys
 import json
-from mock import Mock
 from unittest.mock import patch, call
+from mock import Mock
 import pytest
 from signal_interpreter_server.main import set_parser
 from signal_interpreter_server.routes import signal_interpreter_app

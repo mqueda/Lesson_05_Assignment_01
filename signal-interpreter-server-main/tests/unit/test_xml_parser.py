@@ -4,8 +4,8 @@ Module for implementing the unit tests
 import os
 import sys
 from unittest.mock import patch
-import pytest
 import json
+import pytest
 from signal_interpreter_server.main import set_parser
 from signal_interpreter_server.xml_parser import LoadAndParseXml
 from signal_interpreter_server.routes import signal_interpreter_app
@@ -15,8 +15,10 @@ from signal_interpreter_server.exceptions import \
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 SRC_DIR = os.path.join(ROOT_DIR, "signal_interpreter_server")
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
-TEST_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures", "signal_database.xml")
-TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures", "BAD_test_basic.xml")
+TEST_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures",
+                                       "signal_database.xml")
+TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures",
+                                           "BAD_test_basic.xml")
 
 
 PROCESSED_XML_DATA = {'services': [{'id': '11', 'title': 'ECU Reset'},
