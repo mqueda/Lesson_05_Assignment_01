@@ -6,12 +6,10 @@ import sys
 from mock import Mock
 from unittest.mock import patch
 import pytest
-sys.path[0] = 'C:\\temp\\Lesson_04_Assignment_01-main\\' \
-              'signal-interpreter-server-main\\' \
-              'signal_interpreter_server'
-from routes import signal_interpreter_app, set_parser  # nopep8
-from xml_parser import LoadAndParseXml  # nopep8
-from exceptions import ParserErrorKeyError  # nopep8
+from signal_interpreter_server.main import set_parser
+from signal_interpreter_server.routes import signal_interpreter_app
+from signal_interpreter_server.xml_parser import LoadAndParseXml
+from signal_interpreter_server.exceptions import ParserErrorKeyError
 
 
 os.chdir(os.path.join(os.path.abspath(os.path.dirname(__file__))))

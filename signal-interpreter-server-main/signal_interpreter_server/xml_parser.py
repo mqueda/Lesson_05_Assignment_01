@@ -3,7 +3,7 @@ Module for implementing the xml parser
 """
 import logging
 import xml.etree.ElementTree as ET
-from exceptions import \
+from signal_interpreter_server.exceptions import \
     ParserErrorFileNotFoundError, ParserErrorDecodeError
 
 

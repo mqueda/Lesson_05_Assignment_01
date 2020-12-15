@@ -1,13 +1,9 @@
 """
 Module for implementing the unit tests
 """
-import sys
 import pytest
-sys.path[0] = 'C:\\temp\\Lesson_04_Assignment_01-main' \
-              '\\signal-interpreter-server-main' \
-              '\\signal_interpreter_server'
-from parser_factory import ParserFactory  # nopep8
-from json_parser import LoadAndParseJson  # nopep8
+from signal_interpreter_server.parser_factory import ParserFactory
+from signal_interpreter_server.json_parser import LoadAndParseJson
 
 
 def test_get_parser_function_ok():

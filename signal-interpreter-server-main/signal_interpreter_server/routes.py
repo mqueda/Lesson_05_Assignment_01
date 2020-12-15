@@ -3,11 +3,8 @@ Module for implementing the routes
 """
 import logging
 from flask import Flask, request, jsonify, abort
-from exceptions import ParserErrorKeyError  # pragma: no cover
-from parser_factory import ParserFactory
-from json_parser import LoadAndParseJson
-from xml_parser import LoadAndParseXml
-from yaml_parser import LoadAndParseYaml
+from signal_interpreter_server.exceptions import\
+    ParserErrorKeyError  # pragma: no cover
 
 
 signal_interpreter_app = Flask(__name__)
@@ -16,20 +13,14 @@ signal_interpreter_app = Flask(__name__)
 logger = logging.getLogger(__name__)
 
 
-def set_parser(format, file):
+def set_factory_object(fac_obj):
     """
-    Action : Set the factory parser.
-    Expected Results : Proper factory parser set.
-    Returns: N/A.
+    Action : Set the factory object properly.
+    Expected Results : Proper factory object set.
+    Returns: factory_object.
     """
-    global PARSER
-    factory = ParserFactory()
-    factory.register_format("JSON", LoadAndParseJson)
-    factory.register_format("XML", LoadAndParseXml)
-    factory.register_format("YAML", LoadAndParseYaml)
-    factory.set_signal_database_format(format)
-    PARSER = factory.get_parser()
-    PARSER.load_file(file)
+    global FACTORY_OBJECT
+    FACTORY_OBJECT = fac_obj
 
 
 @signal_interpreter_app.route("/", methods=["POST"])
@@ -43,7 +34,7 @@ def interpret_signal():
         logging.info("Processing Request...")
         data = request.get_json()
         logging.debug('Requested Id : "%s"', data['service'])
-        parsed_data = PARSER.return_signal_by_title(data['service'])
+        parsed_data = FACTORY_OBJECT.return_signal_by_title(data['service'])
         logging.debug('Answer : "%s"', parsed_data)
         jsonfy_data = jsonify(parsed_data)
         if jsonfy_data.json == "Service not suported!":

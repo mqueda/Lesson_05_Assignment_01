@@ -1,16 +1,19 @@
 """
 Module for implementing the unit tests
 """
+import os
 import sys
 from unittest.mock import patch, mock_open
 import pytest
-sys.path[0] = 'C:\\temp\\Lesson_04_Assignment_01-main\\' \
-              'signal-interpreter-server-main\\' \
-              'signal_interpreter_server'
-from json_parser import LoadAndParseJson, json  # nopep8
-from routes import signal_interpreter_app, set_parser  # nopep8
-from exceptions import\
-    ParserErrorFileNotFoundError, ParserErrorDecodeError  # nopep8
+from signal_interpreter_server.main import set_parser
+from signal_interpreter_server.json_parser import LoadAndParseJson, json
+from signal_interpreter_server.routes import signal_interpreter_app
+from signal_interpreter_server.exceptions import\
+    ParserErrorFileNotFoundError, ParserErrorDecodeError
+
+
+CURR_DIR = os.path.abspath(os.path.dirname(__file__))
+TEST_BAD_BASIC_FIXTURE_PATH = os.path.join(CURR_DIR, "fixtures", "BAD_test_basic.json")
 
 
 RAW_JSON_DATA = '{ "json" : "json reference!" }'
@@ -95,7 +98,7 @@ def test_application_wrong_json_file_name_error():
 
 
 @patch.object(sys, "argv", ["signal_interpreter_server", "--file_path",
-                            "..\\integration\\fixtures\\BAD_test_basic.json"])
+                            TEST_BAD_BASIC_FIXTURE_PATH])
 def test_application_wrong_json_file_content_error():
     """
     Action : Test the server correct error check.
